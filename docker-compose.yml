@@ -1,0 +1,14 @@
+version: '3.7'
+services:
+  backend:
+    build:
+      context: ./backend
+      args:
+        uid: "${UID}"
+        gid: "${GID}"
+      dockerfile: Dockerfile
+    ports:
+      - "127.0.0.1:9000:8000"
+    volumes:
+      - ./backend/main.py:/code/main.py
+    command: uvicorn main:app --host 0.0.0.0 --port 8000
